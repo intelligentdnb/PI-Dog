@@ -5,10 +5,10 @@ module.exports = sequelize => {
     //defino temperament
     sequelize.define('temperament', {
         id: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-        },
+            autoIncrement: true, 
+          },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
