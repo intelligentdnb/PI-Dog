@@ -5,13 +5,13 @@ module.exports = sequelize => {
     //defino temperament
     sequelize.define('temperament', {
         id: {
-            type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         }
     });
 };
