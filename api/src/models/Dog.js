@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-const img = require("dog.png");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -31,12 +30,16 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: img,
+      defaultValue: "image.url",
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
-    }
+    }, 
+    
+  },
+  {
+    timestamps:false
   });
 };
