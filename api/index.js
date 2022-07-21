@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { temperamentsToDB } = require('./src/routes/controladores.js');
+const { temperamentsToDB } = require('./src/routes/controllers.js');
 
 temperamentsToDB();
 
