@@ -21,6 +21,8 @@ const getTemperament = async()=>{
     }
 };
 
+
+//funcion para mostrar los temperamentos desde mi base de datos
 const showTemperaments = async (req, res) => {
         try {
             const temperament = await Temperament.findAll({
@@ -72,17 +74,20 @@ const getApiDogs = async()=>{
         const temperament = await getTemperamentMyDb();
         let dogs = await axios.get(API+API_KEY);
         
-        let dog = dogs.data.map(el =>{
+        let dog = dogs.data.map(e =>{
             return{
-                id:el.id,
-                name:el.name,
-                weight:el.weight.metric,
-                height:el.height.metric,
-                temperament: el.temperament,
-                image: el.image.url,
-                life_span: el.life_span
-            }
-        })
+                id: e.id,
+                name: e.name,
+                image: e.image.url,
+                temperaments: e.temperament ? e.temperament : "No tiene temperamentos definidos",
+                life_span_min: e.life_span.split(" - ").shift(),  
+                life_span_max: e.life_span.split(" - ").pop().split(" ").shift(),  
+                height_min: e.height.metric.split(" - ").shift(), 
+                height_max: e.height.metric.split(" - ").pop(),
+                weight_min: e.weight.metric.split(" - ").shift(),
+                weight_max: e.weight.metric.split(" - ").pop(),
+            };
+        });
         //console.log(dog)
         return dog;
     } catch (error) {
@@ -160,9 +165,12 @@ const postDogs = async(req, res) =>{
     try{
         let {
             name,
-            height,
-            weight,
-            life_span,
+            height_max,
+            height_min,
+            weight_max,
+            weight_min,
+            life_span_max,
+            life_span_min,
             image,
             temperament,
             createInDb
@@ -173,9 +181,12 @@ const postDogs = async(req, res) =>{
         if(!result.length){
             const dogCreate = await Dog.create({
                 name,
-                height,
-                weight,
-                life_span,
+                height_min,
+                height_max,
+                weight_min,
+                weight_max,
+                life_span_min,
+                life_span_max,
                 image,
                 createInDb
             })
