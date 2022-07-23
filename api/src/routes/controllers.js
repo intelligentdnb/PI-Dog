@@ -100,7 +100,7 @@ const getAllDogs = async(req, res) => {
             height_min: e.height_min,
             weight_min: e.weight_min,
             weight_max: e.weight_max,
-            //acá es donde mapeo para que me devuelva un array con solo lo que hay en la propiedad nombre
+            //acá es donde mapeo para que me devuelva un array con solo lo que hay en la propiedad nombre y le hago join para que sea un string como me llega desde la API
             temperaments: e.temperaments.map(e => e.name).join(", ")
         });
     
