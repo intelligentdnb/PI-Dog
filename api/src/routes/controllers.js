@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {Dog, Temperament} = require('../db');
+const {Dog, Temperament, dog_temperament} = require('../db');
 require('dotenv').config();
 const {API, API_KEY} = process.env;
 
@@ -45,7 +45,7 @@ const getApiDogs = async() => {
                 id: e.id,
                 name: e.name,
                 image: e.image.url,
-                temperaments: e.temperament ? e.temperament : "This breed not have defined temperaments",
+                temperaments: e.temperament ? e.temperament : "This breed does not have defined temperaments.",
                 life_span_min: e.life_span.split(" - ").shift(),  
                 life_span_max: e.life_span.split(" - ").pop().split(" ").shift(),  
                 height_min: e.height.metric.split(" - ").shift(), 
